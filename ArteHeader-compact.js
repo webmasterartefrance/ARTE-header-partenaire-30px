@@ -1,15 +1,8 @@
-/*
- * ARTE Header 
- * v2: can be compact
- * 
- */
-
 (function($) {
 	var ArteHeader = function(element, _options) {
 		
 		var scriptPath = $('head script').last().attr('src');
 		var scriptFolder = scriptPath.substr(0, scriptPath.lastIndexOf( '/' )+1 );
-		var arteBase = "https:" == document.location.protocol ? "https://www-secure.arte.tv" : "http://www.arte.tv";
 		
 		var options = $.extend({
 			current : "none",
@@ -18,10 +11,10 @@
 			pushContent : false,
 			socialButtons : true,
 			compact : false,
-			css : arteBase+"/header-arte/assets/css/arte-header.css",
+			css : "http://www.arte.tv/header-arte/assets/css/arte-header.css",
 			cssCompact : scriptFolder+"assets/css/arte-header-compact.css"
 		}, _options), SELF = this, 
-			html='<div class="arte-header-wrapper"> <a class="arte-header-logo" href="http://www.arte.tv/"></a> <div class="arte-header-current"></div> <div class="arte-header-menu">     <ul class="arte-header-menu-col1">         <li><a class="color-direct" data-keyword="direct" href=""></a></li>         <li><a class="color-programmes" data-keyword="programmes" href=""></a></li>         <li><a class="color-plus7" data-keyword="plus7" href=""></a></li>         <li><a class="color-vod" data-keyword="vod" href=""></a></li>   <li><a class="color-info" data-keyword="info" href=""></a></li>   </ul>     <ul class="arte-header-menu-col2">         <li><a class="color-future" data-keyword="future" href=""></a></li>         <li><a class="color-creative" data-keyword="creative" href=""></a></li>         <li><a class="color-liveweb" data-keyword="liveweb" href=""></a></li>     </ul> </div> <div class="arte-header-autopromo">     <div class="arte-header-langs">         <ul class="arte-header-lang">             <li><a lang="fr" href="">FR</a> |</li>             <li><a lang="de" href="">DE</a></li>     </ul>         <ul class="arte-header-social">             <li><a href="" class="arte-header-fb"></a></li>             <li><a href="" class="arte-header-tw"></a></li>             <li><a href="" class="arte-header-go"><div class="g-plusone" data-size="small" data-annotation="none"></div></a></li>         </ul>     </div>     <div class="arte-header-textpromo">     </div> </div></div><a href="/" class="arte-header-toggle"></a>',
+			html='<div class="arte-header-wrapper"> <a class="arte-header-logo" href="http://www.arte.tv/"></a> <div class="arte-header-current"></div> <div class="arte-header-menu">     <ul class="arte-header-menu-col1">         <li><a class="color-direct" data-keyword="direct" href=""></a></li>         <li><a class="color-programmes" data-keyword="programmes" href=""></a></li>         <li><a class="color-plus7" data-keyword="plus7" href=""></a></li>         <li><a class="color-vod" data-keyword="vod" href=""></a></li>     </ul>     <ul class="arte-header-menu-col2">         <li><a class="color-future" data-keyword="future" href=""></a></li>         <li><a class="color-creative" data-keyword="creative" href=""></a></li>         <li><a class="color-liveweb" data-keyword="liveweb" href=""></a></li>     </ul> </div> <div class="arte-header-autopromo">     <div class="arte-header-langs">         <ul class="arte-header-lang">             <li><a lang="fr" href="">FR</a> |</li>             <li><a lang="de" href="">DE</a></li>         </ul>         <ul class="arte-header-social">             <li><a href="" class="arte-header-fb"></a></li>             <li><a href="" class="arte-header-tw"></a></li>             <li><a href="" class="arte-header-go"><div class="g-plusone" data-size="small" data-annotation="none"></div></a></li>         </ul>     </div>     <div class="arte-header-textpromo">     </div> </div></div><a href="/" class="arte-header-toggle"></a>',
 			opened = false, $this = $(element), $menu, $menuResponsive, $defaultMenus, $toggleButton, $current, $langs, $col1, $col2, i18n = {
 			fr : {
 				direct : "DIRECT",
@@ -39,7 +32,6 @@
 				link_creative : "http://creative.arte.tv/fr",
 				link_liveweb : "http://liveweb.arte.tv/fr",
 				link_arte : "http://www.arte.tv/fr",
-				link_info : "http://info.arte.tv/fr",
 				keywords : {
 					direct : "fr_direct",
 					programmes : "fr_programmes",
@@ -48,7 +40,6 @@
 					future : "fr_future",
 					creative : "fr_creative",
 					liveweb : "fr_liveweb",
-					info : "fr_info",
 					none : "fr_home"
 				}
 			},
@@ -67,7 +58,6 @@
 				link_future : "http://future.arte.tv/de",
 				link_creative : "http://creative.arte.tv/de",
 				link_liveweb : "http://liveweb.arte.tv/de",
-				link_info : "http://info.arte.tv/de",
 				link_arte : "http://www.arte.tv/de",
 				keywords : {
 					direct : "de_direct",
@@ -77,10 +67,9 @@
 					future : "de_future",
 					creative : "de_creative",
 					liveweb : "de_liveweb",
-					info : "de_info",
 					none : "de_home"
 				}
-			},
+			}
 		}, getI18n = function(k) {
 			return i18n[options.lang][k]
 		}, onMenuToggle = function(event) {
@@ -268,12 +257,12 @@
 		}, initialize = function(data) {
 			
 			if ($('head link[href="'+options.css+'"]').length <= 0 ) {
-				$('head').append('<link rel="stylesheet" href="'+options.css+'" type="text/css" id="arte-header-css"/>');
+				$('head').append('<link rel="stylesheet" href="'+options.css+'" type="text/css" />');
 			}
 			if (options.compact && $('head link[href="'+options.cssCompact+'"]').length <= 0 ) {
-				$('head').append('<link rel="stylesheet" href="'+options.cssCompact+'" type="text/css" id="arte-header-css-compact"/>');
+				$('head').append('<link rel="stylesheet" href="'+options.cssCompact+'" type="text/css" />');
 			}
-			$this.hide();
+			
 			$this.html(data);
 			$menu = $this.find("div.arte-header-menu");
 			$menuResponsive = $this.find("ul.arte-header-menu-responsive");
@@ -350,20 +339,17 @@
 			handleResponsiveMenu();
 			handleTracking();
 			handleSocial();
-			if (!options.compact)
-				handleAutopromo();
+			handleAutopromo();
 			$(window).resize(onResize);
-			onResize();
-			$this.show();
+			onResize()
 		};
 		initialize(html);
 		this.handleAutopromo = handleAutopromo;
 		this.updateLangHref = function(lang, href) {
-			var langBlock = $this.find('div.arte-header-autopromo div.arte-header-langs ul.arte-header-lang li a[lang="' + lang + '"]');
-			if (langBlock.length > 0)
-				langBlock.attr("href", href);
-			else
-				this.addLang(lang.toUpperCase(), href, false );
+			$this
+					.find(
+							'div.arte-header-autopromo div.arte-header-langs ul.arte-header-lang li a[lang="'
+									+ lang + '"]').attr("href", href);
 			return this
 		};
 		this.addLang = function(label, href, selected) {
