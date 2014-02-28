@@ -1,5 +1,4 @@
 
-
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <!-- 	<script type="text/javascript" src="http://www.arte.tv/header-arte/ArteHeader-compact.js"></script>-->
 <script type="text/javascript" src="ArteHeader-compact.js"></script>
@@ -15,6 +14,7 @@
 		var api = $('#arte-header').data('plugin-arte-header');
 		api.updateLangHref('fr', 'http://localhost/arte_header_min/fr');
 		api.updateLangHref('de', 'http://localhost/arte_header_min/de');
+		api.updateLangHref('en', 'http://localhost/arte_header_min/en'); 
 	});
 	 $('#arte-header').arteHeader({
 		 current:'creative',
@@ -24,7 +24,28 @@
 		 socialButtons:true,
 		 compact: true
 	 });
+	 var texteTweet;
 	 
+	
+	var FRSelected = $('.arte-header-lang li a[lang=fr]');
+	var ENSelected = $('.arte-header-lang li a[lang=de]');
+	var ALSelected = $('.arte-header-lang li a[lang=en]');
+	if(FRSelected.attr('class') === 'selected'){
+		texteTweet = 'french tweet';
+		}
+		
+	if(ENSelected.attr('class') === 'selected'){
+		texteTweet = 'english tweet';
+	}
+	 
+	if(ALSelected.attr('class') === 'selected'){
+		texteTweet = 'German tweet';
+	}
+	 
+	$("a.arte-header-tw").bind("click",function(event) {
+			event.preventDefault();
+			window.open("http://twitter.com/home?status="+ encodeURIComponent(texteTweet),"twitter","toolbar=0,status=0,width=626,height=436")
+			});
 	});
 
 	
