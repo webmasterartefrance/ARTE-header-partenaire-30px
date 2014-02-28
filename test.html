@@ -41,7 +41,6 @@
 	if(ALSelected.attr('class') === 'selected'){
 		texteTweet = 'German tweet';
 	}
-
 	$("a.arte-header-tw").bind("click",function(event) {
 			event.preventDefault();
 			window.open("http://twitter.com/home?status="+ encodeURIComponent(texteTweet),"twitter","toolbar=0,status=0,width=626,height=436")
