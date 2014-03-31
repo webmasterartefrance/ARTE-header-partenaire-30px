@@ -7,7 +7,7 @@
 (function($) {
 	var ArteHeader = function(element, _options) {
 		
-		var scriptPath = $('head script').last().attr('src');
+		var scriptPath = "ArteHeader-compact.js";
 		var scriptFolder = scriptPath.substr(0, scriptPath.lastIndexOf( '/' )+1 );
 		var arteBase = "https:" == document.location.protocol ? "https://www-secure.arte.tv" : "http://www.arte.tv";
 		
