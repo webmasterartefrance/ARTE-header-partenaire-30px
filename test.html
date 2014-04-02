@@ -1,32 +1,33 @@
 
+<link rel="stylesheet" href="assets/css/arte-header.css" type="text/css" id="arte-header-css">
+<link rel="stylesheet" href="assets/css/arte-header-compact.css" type="text/css" id="arte-header-css-compact">
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <!-- 	<script type="text/javascript" src="http://www.arte.tv/header-arte/ArteHeader-compact.js"></script>-->
 <script type="text/javascript" src="ArteHeader-compact.js"></script>
-
-
 
 <div id="arte-header"></div>
 
 <!-- Instanciation -->
 <script type="text/javascript">
 	$(document).ready(function(event) {
-	$('#arte-header').on('loaded', function(event) { 
-		var api = $('#arte-header').data('plugin-arte-header');
-		api.updateLangHref('fr', 'http://localhost/arte_header_min/fr');
-		api.updateLangHref('de', 'http://localhost/arte_header_min/de');
-		api.updateLangHref('en', 'http://localhost/arte_header_min/en'); 
-	});
-	 $('#arte-header').arteHeader({
-		 current:'creative',
-		 menu:false,
-		 lang:'fr',
-		 pushContent:true,
-		 socialButtons:true,
-		 compact: true
-	 });
-	
+		$('#arte-header').on('loaded', function(event) {
+			var api = $('#arte-header').data('plugin-arte-header');
+			api.updateLangHref('fr', 'http://localhost/marguerite_duras/duras_fr/');
+			api.updateLangHref('de', 'http://localhost/marguerite_duras/duras_de/');
+			api.updateLangHref('en', 'http://localhost/arte_header_min/en');
+		});
+		$('#arte-header').arteHeader({
+			current: 'creative',
+			menu: false,
+			lang: 'fr',
+			pushContent: true,
+			socialButtons: true,
+			compact: true
+		});
+
 	});
 
-	
+
 </script>
 <!-- /Instanciation -->
+
